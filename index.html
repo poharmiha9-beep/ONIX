@@ -3,925 +3,347 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ONIX | Digitalne rešitve po meri</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Arial, sans-serif;
-      background: #f5f5f7;
-      color: #1d1d1f;
-      line-height: 1.45;
-      overflow-x: hidden;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    .topbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 66px;
-      z-index: 100;
-      display: grid;
-      grid-template-columns: 1fr auto 1fr;
-      align-items: center;
-      padding: 0 5vw;
-      background: rgba(251,251,253,0.78);
-      backdrop-filter: saturate(180%) blur(22px);
-      border-bottom: 1px solid rgba(0,0,0,0.06);
-    }
-
-    .language-switcher {
-      display: flex;
-      gap: 6px;
-      justify-self: start;
-    }
-
-    .lang-btn {
-      background: transparent;
-      color: #515154;
-      border: 0;
-      padding: 8px 9px;
-      border-radius: 999px;
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.3px;
-      cursor: pointer;
-      transition: 0.2s ease;
-    }
-
-    .lang-btn:hover,
-    .lang-btn.active {
-      background: #1d1d1f;
-      color: #ffffff;
-    }
-
-    .brand {
-      justify-self: center;
-      font-size: 30px;
-      line-height: 1;
-      letter-spacing: 9px;
-      font-weight: 800;
-      color: #1d1d1f;
-      text-transform: uppercase;
-    }
-
-    .nav {
-      justify-self: end;
-      display: flex;
-      gap: 28px;
-      font-size: 13px;
-      color: #515154;
-    }
-
-    .nav a {
-      transition: 0.2s ease;
-    }
-
-    .nav a:hover {
-      color: #000000;
-    }
-
-    .hero {
-      min-height: 100vh;
-      display: grid;
-      place-items: center;
-      text-align: center;
-      padding: 130px 6vw 70px;
-      background: radial-gradient(circle at 50% 26%, #ffffff 0%, #f5f5f7 45%, #eeeeef 100%);
-    }
-
-    .hero-inner {
-      max-width: 1100px;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      color: #86868b;
-      font-size: 20px;
-      font-weight: 700;
-      letter-spacing: -0.2px;
-      margin-bottom: 18px;
-    }
-
-    h1 {
-      font-size: clamp(58px, 9vw, 138px);
-      line-height: 0.9;
-      letter-spacing: -6px;
-      font-weight: 800;
-      margin-bottom: 28px;
-    }
-
-    .gradient-text {
-      background: linear-gradient(90deg, #111111, #6e6e73, #111111);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-
-    .hero p {
-      max-width: 790px;
-      margin: 0 auto 36px;
-      color: #6e6e73;
-      font-size: clamp(21px, 2.1vw, 29px);
-      letter-spacing: -0.7px;
-      font-weight: 500;
-    }
-
-    .cta-row {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 15px;
-      align-items: center;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 13px 23px;
-      border-radius: 999px;
-      font-weight: 600;
-      font-size: 17px;
-      transition: 0.22s ease;
-    }
-
-    .btn.primary {
-      background: #0071e3;
-      color: #ffffff;
-    }
-
-    .btn.primary:hover {
-      background: #0077ed;
-      transform: translateY(-1px);
-    }
-
-    .btn.secondary {
-      color: #0071e3;
-      background: transparent;
-    }
-
-    .btn.secondary:hover {
-      color: #005bb5;
-    }
-
-    .showcase {
-      
-      width: min(1120px, 92vw);
-      min-height: 520px;
-      margin: 55px auto 0;
-      border-radius: 46px;
-      background:
-        linear-gradient(to bottom, rgba(255,255,255,0.20), rgba(0,0,0,0.58)),
-        url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1800&q=90') center/cover;
-      box-shadow: 0 35px 90px rgba(0,0,0,0.18);
-      overflow: hidden;
-      position: relative;
-    }
-
-    .showcase-card {
-      
-      position: absolute;
-      left: 50%;
-      bottom: 26px;
-      transform: translateX(-50%);
-      width: min(640px, calc(100% - 44px));
-      padding: 22px 26px;
-      border-radius: 28px;
-      background: rgba(255,255,255,0.78);
-      backdrop-filter: blur(24px);
-      box-shadow: 0 20px 60px rgba(0,0,0,0.12);
-      color: #1d1d1f;
-    }
-
-    .showcase-card strong {
-      display: block;
-      font-size: 24px;
-      letter-spacing: -0.6px;
-      margin-bottom: 4px;
-    }
-
-    .showcase-card span {
-      color: #6e6e73;
-      font-size: 16px;
-    }
-
-    section {
-      padding: 95px 5vw;
-    }
-
-    .section-head {
-      max-width: 920px;
-      margin: 0 auto 48px;
-      text-align: center;
-    }
-
-    .section-head h2 {
-      font-size: clamp(44px, 6vw, 82px);
-      line-height: 0.96;
-      letter-spacing: -4px;
-      margin-bottom: 20px;
-      font-weight: 800;
-    }
-
-    .section-head p {
-      color: #6e6e73;
-      font-size: clamp(20px, 2vw, 26px);
-      letter-spacing: -0.7px;
-      font-weight: 500;
-    }
-
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 22px;
-      max-width: 1240px;
-      margin: 0 auto;
-    }
-
-    .service-card {
-      
-      min-height: 365px;
-      padding: 34px;
-      border-radius: 34px;
-      background: #ffffff;
-      box-shadow: 0 18px 55px rgba(0,0,0,0.06);
-      transition: 0.25s ease;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .service-card:hover {
-      
-      transform: translateY(-6px);
-      box-shadow: 0 28px 75px rgba(0,0,0,0.10);
-    }
-
-    .service-card small {
-      color: #86868b;
-      font-size: 13px;
-      font-weight: 700;
-    }
-
-    .service-card h3 {
-      margin: 24px 0 12px;
-      font-size: 31px;
-      line-height: 1.03;
-      letter-spacing: -1.4px;
-    }
-
-    .service-card p {
-      color: #6e6e73;
-      font-size: 18px;
-      letter-spacing: -0.35px;
-    }
-
-    .service-card.featured {
-      background: #000000;
-      color: #ffffff;
-    }
-
-    .service-card.featured p,
-    .service-card.featured small {
-      color: rgba(255,255,255,0.68);
-    }
-
-    .highlight {
-      
-      max-width: 1240px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      align-items: center;
-      gap: 0;
-      border-radius: 46px;
-      background: #000000;
-      color: #ffffff;
-      overflow: hidden;
-      box-shadow: 0 35px 90px rgba(0,0,0,0.18);
-    }
-
-    .highlight-image {
-      min-height: 640px;
-      background:
-        linear-gradient(to bottom, rgba(0,0,0,0.04), rgba(0,0,0,0.44)),
-        url('https://images.unsplash.com/photo-1516321165247-4aa89a48be28?auto=format&fit=crop&w=1800&q=90') center/cover;
-    }
-
-    .highlight-content {
-      padding: 58px;
-    }
-
-    .highlight h2 {
-      font-size: clamp(44px, 5.6vw, 82px);
-      line-height: 0.94;
-      letter-spacing: -4px;
-      margin-bottom: 22px;
-    }
-
-    .highlight p {
-      color: rgba(255,255,255,0.68);
-      font-size: 21px;
-      letter-spacing: -0.6px;
-      margin-bottom: 24px;
-    }
-
-    .bullets {
-      display: grid;
-      gap: 13px;
-      margin-top: 24px;
-    }
-
-    .bullet {
-      display: flex;
-      gap: 12px;
-      color: rgba(255,255,255,0.78);
-      font-size: 17px;
-    }
-
-    .bullet::before {
-      content: "✓";
-      color: #2997ff;
-      font-weight: 900;
-    }
-
-    .process-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 18px;
-      max-width: 1240px;
-      margin: 0 auto;
-    }
-
-    .process-card {
-      
-      padding: 30px;
-      border-radius: 32px;
-      background: #ffffff;
-      box-shadow: 0 18px 55px rgba(0,0,0,0.055);
-    }
-
-    .process-card span {
-      display: inline-flex;
-      width: 42px;
-      height: 42px;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-      background: #0071e3;
-      color: #ffffff;
-      font-weight: 800;
-      margin-bottom: 24px;
-    }
-
-    .process-card h3 {
-      margin-bottom: 10px;
-      font-size: 24px;
-      letter-spacing: -0.8px;
-    }
-
-    .process-card p {
-      color: #6e6e73;
-      font-size: 17px;
-    }
-
-    .image-recommendations {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 22px;
-      max-width: 1240px;
-      margin: 0 auto;
-    }
-
-    .image-card {
-      
-      border-radius: 34px;
-      overflow: hidden;
-      background: #ffffff;
-      box-shadow: 0 18px 55px rgba(0,0,0,0.06);
-    }
-
-    .image-card div {
-      height: 270px;
-      background-size: cover;
-      background-position: center;
-    }
-
-    .img-1 { background-image: url('https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1300&q=90'); }
-    .img-2 { background-image: url('https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=1300&q=90'); }
-    .img-3 { background-image: url('https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1300&q=90'); }
-
-    .image-card article {
-      padding: 26px;
-    }
-
-    .image-card h3 {
-      margin-bottom: 9px;
-      font-size: 24px;
-      letter-spacing: -0.8px;
-    }
-
-    .image-card p {
-      color: #6e6e73;
-      font-size: 16px;
-    }
-
-    .contact {
-      min-height: 78vh;
-      display: grid;
-      place-items: center;
-      text-align: center;
-      background: #ffffff;
-    }
-
-    .contact-box {
-      
-      max-width: 1020px;
-      padding: 70px 40px;
-    }
-
-    .contact-box h2 {
-      font-size: clamp(54px, 8vw, 112px);
-      line-height: 0.91;
-      letter-spacing: -5px;
-      margin-bottom: 24px;
-      font-weight: 800;
-    }
-
-    .contact-box p {
-      color: #6e6e73;
-      font-size: clamp(21px, 2vw, 28px);
-      letter-spacing: -0.7px;
-      max-width: 790px;
-      margin: 0 auto 32px;
-      font-weight: 500;
-    }
-
-    footer {
-      padding: 30px 5vw;
-      color: #86868b;
-      background: #f5f5f7;
-      display: flex;
-      justify-content: space-between;
-      gap: 20px;
-      flex-wrap: wrap;
-      font-size: 13px;
-    }
-
-    @media (max-width: 1080px) {
-      .topbar {
-        grid-template-columns: 1fr;
-        height: auto;
-        gap: 13px;
-        padding: 14px 5vw;
-      }
-
-      .language-switcher,
-      .brand,
-      .nav {
-        justify-self: center;
-      }
-
-      .hero {
-        padding-top: 175px;
-      }
-
-      .services-grid,
-      .image-recommendations {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .process-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .highlight {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    @media (max-width: 720px) {
-      .nav {
-        display: none;
-      }
-
-      .brand {
-        font-size: 27px;
-        letter-spacing: 7px;
-      }
-
-      h1,
-      .section-head h2,
-      .highlight h2,
-      .contact-box h2 {
-        letter-spacing: -2.8px;
-      }
-
-      .showcase {
-        min-height: 430px;
-        border-radius: 32px;
-      }
-
-      .services-grid,
-      .process-grid,
-      .image-recommendations {
-        grid-template-columns: 1fr;
-      }
-
-      section {
-        padding: 72px 5vw;
-      }
-
-      .highlight-content {
-        padding: 34px;
-      }
-
-      .highlight-image {
-        min-height: 420px;
-      }
-    }
-  </style>
+  <meta name="theme-color" content="#0a0a0c" />
+  <title>ONIX — Spletne strani & spletni marketing | Digitalna rast</title>
+  <meta name="description" content="ONIX izdeluje vrhunske spletne strani in spletni marketing, ki podjetjem prinašajo rast in prave rezultate. Sodelujemo tudi z znanimi influencerji." />
+  <meta name="keywords" content="izdelava spletnih strani, spletni marketing, SEO, influencer marketing, digitalna agencija, Leibnitz, ONIX" />
+  <link rel="canonical" href="https://onix.si/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ONIX" />
+  <meta property="og:title" content="ONIX — Digitalna rast. Pravi rezultati." />
+  <meta property="og:description" content="Vrhunske spletne strani in spletni marketing, ki prinašajo prave rezultate." />
+  <meta property="og:url" content="https://onix.si/" />
+  <meta property="og:image" content="assets/og-image.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon-180.png" />
+  <link rel="manifest" href="site.webmanifest" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"ProfessionalService","name":"ONIX","description":"Izdelava spletnih strani in spletni marketing. Sodelovanje z influencerji.","image":"https://onix.si/assets/logo.png","url":"https://onix.si/","telephone":"+386 40 000 000","email":"info@onix.si","priceRange":"€€","areaServed":["Slovenija","Leibnitz","Avstrija"]}
+  </script>
 </head>
 <body>
-  <header class="topbar">
-    <div class="language-switcher" aria-label="Language switcher">
-      <button class="lang-btn active" onclick="setLanguage('sl')">SLO</button>
-      <button class="lang-btn" onclick="setLanguage('en')">ENG</button>
-      <button class="lang-btn" onclick="setLanguage('de')">DE</button>
-    </div>
+  <a href="#vrh" class="skip">Preskoči na vsebino</a>
 
-    <a href="#top" class="brand">ONIX</a>
+  <div class="lava" aria-hidden="true">
+    <span class="lava__b lava__b--1"></span>
+    <span class="lava__b lava__b--2"></span>
+    <span class="lava__b lava__b--3"></span>
+  </div>
 
-    <nav class="nav">
-      <a href="#services" data-i18n="navServices">Storitve</a>
-      <a href="#chatbot" data-i18n="navChatbot">Chatbot</a>
-      <a href="#images" data-i18n="navImages">Slike</a>
-      <a href="#contact" data-i18n="navContact">Kontakt</a>
+  <div class="preloader" id="preloader">
+    <span class="brand brand--xl">ONI<em>X</em></span>
+    <div class="preloader__bar"><i></i></div>
+  </div>
+
+  <div class="cursor" id="cursor"></div>
+
+  <!-- NAV -->
+  <header class="nav" id="nav">
+    <a href="#vrh" class="nav__brand" data-cursor="hover" aria-label="ONIX domov"><span class="brand">ONI<em>X</em></span></a>
+    <nav class="nav__links" aria-label="Glavna navigacija">
+      <a href="#zakaj" data-cursor="hover" data-sl="Zakaj splet" data-en="Why web" data-de="Warum Web">Zakaj splet</a>
+      <a href="#storitve" data-cursor="hover" data-sl="Storitve" data-en="Services" data-de="Leistungen">Storitve</a>
+      <a href="#kreacije" data-cursor="hover" data-sl="Kreacije" data-en="Work" data-de="Projekte">Kreacije</a>
+      <a href="#cene" data-cursor="hover" data-sl="Cene" data-en="Pricing" data-de="Preise">Cene</a>
+      <a href="#mnenja" data-cursor="hover" data-sl="Mnenja" data-en="Reviews" data-de="Bewertungen">Mnenja</a>
     </nav>
+    <div class="lang" role="group" aria-label="Jezik">
+      <button class="lang__btn is-active" data-lang="sl">SL</button>
+      <button class="lang__btn" data-lang="en">EN</button>
+      <button class="lang__btn" data-lang="de">DE</button>
+    </div>
+    <a href="#kontakt" class="btn btn--red nav__cta" data-cursor="hover" data-sl="Brezplačen posvet" data-en="Free consult" data-de="Gratis Beratung"><span>Brezplačen posvet</span></a>
+    <button class="nav__burger" id="burger" aria-label="Meni"><i></i><i></i></button>
   </header>
 
-  <main id="top">
+  <div class="menu" id="menu">
+    <nav>
+      <a href="#zakaj" data-sl="Zakaj splet" data-en="Why web" data-de="Warum Web">Zakaj splet</a>
+      <a href="#storitve" data-sl="Storitve" data-en="Services" data-de="Leistungen">Storitve</a>
+      <a href="#kreacije" data-sl="Kreacije" data-en="Work" data-de="Projekte">Kreacije</a>
+      <a href="#cene" data-sl="Cene" data-en="Pricing" data-de="Preise">Cene</a>
+      <a href="#mnenja" data-sl="Mnenja" data-en="Reviews" data-de="Bewertungen">Mnenja</a>
+      <a href="#kontakt" data-sl="Kontakt" data-en="Contact" data-de="Kontakt">Kontakt</a>
+    </nav>
+    <div class="menu__foot"><a href="tel:+38640000000">+386 40 000 000</a><a href="mailto:info@onix.si">info@onix.si</a></div>
+  </div>
+
+  <main id="vrh">
+    <!-- HERO -->
     <section class="hero">
-      <div class="hero-inner">
-        <div class="eyebrow" data-i18n="heroEyebrow">ONIX Digital Studio</div>
-        <h1><span class="gradient-text" data-i18n="heroTitle">Digitalni nastop. Na višjem nivoju.</span></h1>
-        <p data-i18n="heroText">Spletne strani po meri, profesionalni AI chatbot, Google marketing, družbena omrežja, logotipi, snemanje in vzdrževanje — vse v eni premium digitalni izkušnji.</p>
-        <div class="cta-row">
-          <a href="#contact" class="btn primary" data-i18n="heroCta">Začni projekt</a>
-          <a href="#services" class="btn secondary" data-i18n="heroCta2">Poglej storitve ›</a>
-        </div>
-
-        <div class="showcase">
-          <div class="showcase-card">
-            <strong data-i18n="heroCardTitle">Minimalno. Hitro. Profesionalno.</strong>
-            <span data-i18n="heroCardText">ONIX združi dizajn, tehnologijo in marketing v spletno stran, ki izgleda kot resna znamka.</span>
+      <div class="hero__glow"></div>
+      <div class="hero__grid-lines" aria-hidden="true"></div>
+      <div class="hero__inner">
+        <div class="hero__text">
+          <p class="eyebrow reveal"><span class="dot"></span> <span data-sl="Digitalna agencija · Slovenija &amp; Avstrija" data-en="Digital agency · Slovenia &amp; Austria" data-de="Digitalagentur · Slowenien &amp; Österreich">Digitalna agencija · Slovenija &amp; Avstrija</span></p>
+          <h1 class="hero__title">
+            <span class="reveal-line"><span data-sl="Digitalna rast." data-en="Digital growth." data-de="Digitales Wachstum.">Digitalna rast.</span></span>
+            <span class="reveal-line"><span data-sl="Pravi <em>rezultati</em>." data-en="Real <em>results</em>." data-de="Echte <em>Ergebnisse</em>.">Pravi <em>rezultati</em>.</span></span>
+          </h1>
+          <p class="hero__lead reveal" data-sl="Ustvarjamo vrhunske spletne strani in marketinške strategije, ki podjetjem prinašajo rast in prednost pred konkurenco." data-en="We craft premium websites and marketing strategies that bring businesses growth and an edge over the competition." data-de="Wir gestalten erstklassige Websites und Marketingstrategien, die Unternehmen Wachstum und einen Vorsprung verschaffen.">Ustvarjamo vrhunske spletne strani in marketinške strategije, ki podjetjem prinašajo rast in prednost pred konkurenco.</p>
+          <div class="hero__actions reveal">
+            <a href="#kontakt" class="btn btn--red magnetic" data-cursor="hover" data-sl="Brezplačen posvet" data-en="Free consultation" data-de="Gratis Beratung"><span>Brezplačen posvet</span></a>
+            <a href="#kreacije" class="btn btn--ghost magnetic" data-cursor="hover" data-sl="Naše kreacije ↗" data-en="Our work ↗" data-de="Unsere Projekte ↗"><span>Naše kreacije ↗</span></a>
+          </div>
+          <div class="hero__stats reveal">
+            <div class="stat"><b data-count="120" data-suffix="+">0</b><span data-sl="zaključenih projektov" data-en="completed projects" data-de="abgeschlossene Projekte">zaključenih projektov</span></div>
+            <div class="stat"><b data-count="3" data-suffix="×">0</b><span data-sl="povprečna rast prometa" data-en="average traffic growth" data-de="durchschn. Traffic-Wachstum">povprečna rast prometa</span></div>
+            <div class="stat"><b data-count="40" data-suffix="+">0</b><span data-sl="zadovoljnih strank" data-en="happy clients" data-de="zufriedene Kunden">zadovoljnih strank</span></div>
           </div>
         </div>
-      </div>
-    </section>
-
-    <section id="services">
-      <div class="section-head">
-        <h2 data-i18n="servicesTitle">Vse za podjetje, ki želi izgledati večje.</h2>
-        <p data-i18n="servicesText">Čista estetika, jasna ponudba in digitalna orodja, ki ustvarijo zaupanje že v prvih sekundah.</p>
-      </div>
-
-      <div class="services-grid">
-        <article class="service-card">
-          <small>01</small>
-          <h3 data-i18n="service1Title">Spletne strani po meri</h3>
-          <p data-i18n="service1Text">Moderne, hitre in prodajno usmerjene spletne strani, prilagojene tvoji dejavnosti, ciljem in strankam.</p>
-        </article>
-
-        <article class="service-card featured">
-          <small>02</small>
-          <h3 data-i18n="service2Title">Profesionalni AI chatbot</h3>
-          <p data-i18n="service2Text">Prvi res strokovno personaliziran chatbot za slovenska podjetja — prilagojen tvoji ponudbi, tonu, pogostim vprašanjem in prodajnemu procesu.</p>
-        </article>
-
-        <article class="service-card">
-          <small>03</small>
-          <h3 data-i18n="service3Title">Google in spletni marketing</h3>
-          <p data-i18n="service3Text">Google oglaševanje, optimizacija, kampanje in strategija, da te stranke najdejo takrat, ko te najbolj potrebujejo.</p>
-        </article>
-
-        <article class="service-card">
-          <small>04</small>
-          <h3 data-i18n="service4Title">Družbena omrežja</h3>
-          <p data-i18n="service4Text">Urejanje vsebin, objav in kampanj za Instagram, Facebook, TikTok, LinkedIn in ostala pomembna omrežja.</p>
-        </article>
-
-        <article class="service-card">
-          <small>05</small>
-          <h3 data-i18n="service5Title">Dizajn logotipov</h3>
-          <p data-i18n="service5Text">Profesionalna vizualna identiteta, ki podjetju doda prepoznavnost, prestiž in jasen prvi vtis.</p>
-        </article>
-
-        <article class="service-card">
-          <small>06</small>
-          <h3 data-i18n="service6Title">Snemanje in vzdrževanje</h3>
-          <p data-i18n="service6Text">Profesionalno snemanje vsebin, posodobitve strani, tehnično vzdrževanje in dolgoročna skrb za digitalni nastop.</p>
-        </article>
-      </div>
-    </section>
-
-    <section id="chatbot">
-      <div class="highlight">
-        <div class="highlight-image"></div>
-        <div class="highlight-content">
-          <div class="eyebrow" data-i18n="chatbotEyebrow">AI prodajni asistent</div>
-          <h2 data-i18n="chatbotTitle">Chatbot, ki ni generičen. Je narejen za tvoje podjetje.</h2>
-          <p data-i18n="chatbotText">ONIX chatbot razume tvoje storitve, govori v tvojem tonu in strankam odgovarja profesionalno. Namenjen je podjetjem, ki želijo hitrejše odgovore, več povpraševanj in boljšo uporabniško izkušnjo.</p>
-          <div class="bullets">
-            <div class="bullet" data-i18n="bullet1">Personaliziran na tvojo dejavnost, cenike in pogosta vprašanja.</div>
-            <div class="bullet" data-i18n="bullet2">Deluje kot prodajni asistent, ne samo kot navaden klepet.</div>
-            <div class="bullet" data-i18n="bullet3">Primeren za slovenski trg, lokalna podjetja in profesionalno komunikacijo.</div>
-          </div>
+        <div class="hero__visual reveal">
+          <img src="assets/laptop.jpg" alt="ONIX spletna stran" class="hero__shot" loading="eager" />
+          <span class="hero__badge"><b>+212%</b><i data-sl="več obiska" data-en="more traffic" data-de="mehr Traffic">več obiska</i></span>
         </div>
       </div>
+      <div class="scrolldown" aria-hidden="true"><span data-sl="pomik" data-en="scroll" data-de="scrollen">pomik</span><i></i></div>
     </section>
 
-    <section>
-      <div class="section-head">
-        <h2 data-i18n="processTitle">Od ideje do premium nastopa.</h2>
-        <p data-i18n="processText">Jasen proces, brez nepotrebnega kompliciranja.</p>
+    <!-- MARQUEE -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee__track">
+        <span>Spletne strani</span><i>✦</i><span>Spletni marketing</span><i>✦</i><span>SEO</span><i>✦</i><span>Influencer marketing</span><i>✦</i><span>Google Ads</span><i>✦</i><span>Web design</span><i>✦</i>
+        <span>Spletne strani</span><i>✦</i><span>Spletni marketing</span><i>✦</i><span>SEO</span><i>✦</i><span>Influencer marketing</span><i>✦</i><span>Google Ads</span><i>✦</i><span>Web design</span><i>✦</i>
+      </div>
+    </div>
+
+    <!-- INTERAKTIVNA ZGODBA -->
+    <section class="story" id="zakaj">
+      <div class="sec-head">
+        <p class="kicker reveal"><span>01</span> <span data-sl="Zakaj spletna prezenca" data-en="Why web presence" data-de="Warum Web-Präsenz">Zakaj spletna prezenca</span></p>
+        <h2 class="sec-title reveal" data-sl="Realnost je <em>preprosta</em>." data-en="The reality is <em>simple</em>." data-de="Die Realität ist <em>einfach</em>.">Realnost je <em>preprosta</em>.</h2>
+        <p class="story__intro reveal" data-sl="Se strinjate ali ne — vsakič, ko nekdo potrebuje storitev, najprej pogleda na splet. Poglejte, kaj se zgodi z vašo stranko:" data-en="Agree or not — every time someone needs a service, they check the web first. Watch what happens to your customer:" data-de="Ob Sie zustimmen oder nicht — jedes Mal, wenn jemand eine Leistung braucht, schaut er zuerst ins Web. Sehen Sie, was mit Ihrem Kunden passiert:">Se strinjate ali ne — vsakič, ko nekdo potrebuje storitev, najprej pogleda na splet. Poglejte, kaj se zgodi z vašo stranko:</p>
       </div>
 
-      <div class="process-grid">
-        <article class="process-card">
-          <span>1</span>
-          <h3 data-i18n="process1Title">Analiza</h3>
-          <p data-i18n="process1Text">Pregled dejavnosti, ciljev, konkurence in strank, ki jih želiš doseči.</p>
-        </article>
-        <article class="process-card">
-          <span>2</span>
-          <h3 data-i18n="process2Title">Dizajn</h3>
-          <p data-i18n="process2Text">Priprava moderne vizualne podobe, strukture strani in jasne predstavitve ponudbe.</p>
-        </article>
-        <article class="process-card">
-          <span>3</span>
-          <h3 data-i18n="process3Title">Izdelava</h3>
-          <p data-i18n="process3Text">Razvoj spletne strani, vnos vsebin, jezikovni preklop in tehnična optimizacija.</p>
-        </article>
-        <article class="process-card">
-          <span>4</span>
-          <h3 data-i18n="process4Title">Rast</h3>
-          <p data-i18n="process4Text">Vzdrževanje, marketing, oglaševanje, chatbot in izboljšave skozi čas.</p>
-        </article>
-      </div>
-    </section>
-
-    <section id="images">
-      <div class="section-head">
-        <h2 data-i18n="imagesTitle">Slike naj izgledajo premium, ne generično.</h2>
-        <p data-i18n="imagesText">Najboljše delujejo svetle minimalistične fotografije, temni close-up posnetki tehnologije, MacBook/iPhone detajli, realni posnetki snemanja in čisti poslovni ambienti.</p>
+      <div class="story__switch" role="group" aria-label="Scenarij">
+        <button class="story__opt is-active" data-mode="bad" data-sl="Brez spletne strani" data-en="Without a website" data-de="Ohne Website">Brez spletne strani</button>
+        <button class="story__opt" data-mode="good" data-sl="Z ONIX" data-en="With ONIX" data-de="Mit ONIX">Z ONIX</button>
       </div>
 
-      <div class="image-recommendations">
-        <div class="image-card">
-          <div class="img-1"></div>
-          <article>
-            <h3 data-i18n="image1Title">Minimalističen delovni prostor</h3>
-            <p data-i18n="image1Text">Za naslovnico uporabi čist prostor z računalnikom, svetlobo in premium ambientom.</p>
-          </article>
-        </div>
+      <div class="story__stage" id="story" data-mode="bad">
+        <ol class="story__path">
+          <li class="story__step"><span class="story__ic">🔍</span><b data-sl="Stranka te išče na Googlu" data-en="A customer searches on Google" data-de="Ein Kunde sucht bei Google">Stranka te išče na Googlu</b></li>
+          <li class="story__step"><span class="story__ic story__ic--bad" data-good="✓" data-bad="✕">✕</span><b class="t-bad" data-sl="Najde konkurenco — ne tebe" data-en="Finds your competitor — not you" data-de="Findet die Konkurrenz — nicht dich">Najde konkurenco — ne tebe</b><b class="t-good" data-sl="Najde TEBE na vrhu Googla" data-en="Finds YOU at the top of Google" data-de="Findet DICH ganz oben bei Google">Najde TEBE na vrhu Googla</b></li>
+          <li class="story__step"><span class="story__ic" data-good="🖱️" data-bad="🤷">🤷</span><b class="t-bad" data-sl="Klikne njihovo stran" data-en="Clicks their website" data-de="Klickt auf deren Website">Klikne njihovo stran</b><b class="t-good" data-sl="Navdušena nad tvojo stranjo" data-en="Impressed by your site" data-de="Begeistert von deiner Seite">Navdušena nad tvojo stranjo</b></li>
+          <li class="story__step story__step--end"><span class="story__ic story__ic--res" data-good="🏆" data-bad="💸">💸</span><b class="t-bad" data-sl="Posel izgubljen." data-en="Deal lost." data-de="Auftrag verloren.">Posel izgubljen.</b><b class="t-good" data-sl="Nova stranka. Zmaga." data-en="New customer. Win." data-de="Neuer Kunde. Gewonnen.">Nova stranka. Zmaga.</b></li>
+        </ol>
+      </div>
 
-        <div class="image-card">
-          <div class="img-2"></div>
-          <article>
-            <h3 data-i18n="image2Title">Strategija in marketing</h3>
-            <p data-i18n="image2Text">Za marketing in proces uporabi sliko sestanka, planiranja kampanj ali pregleda spletne analitike.</p>
-          </article>
-        </div>
+      <div class="story__live reveal" id="live">
+        <span class="story__live-tag"><i></i> <span data-sl="V živo" data-en="Live" data-de="Live">V živo</span></span>
+        <b id="liveCount">0</b>
+        <span class="story__live-label" data-sl="ljudi je, odkar ste na tej strani, že iskalo storitev na spletu — in vsako sekundo jih je več." data-en="people have searched for a service online since you opened this page — and more every second." data-de="Menschen haben online nach einer Leistung gesucht, seit Sie diese Seite geöffnet haben — und es werden mehr.">ljudi je, odkar ste na tej strani, že iskalo storitev na spletu — in vsako sekundo jih je več.</span>
+      </div>
 
-        <div class="image-card">
-          <div class="img-3"></div>
-          <article>
-            <h3 data-i18n="image3Title">Profesionalno snemanje</h3>
-            <p data-i18n="image3Text">Za video storitve uporabi kamero, luči, mikrofone ali realen kader snemanja za podjetje.</p>
-          </article>
-        </div>
+      <div class="story__punch reveal">
+        <p data-sl="Vprašanje ni, ali <em>potrebujete</em> spletno stran.<br/>Vprašanje je, koliko strank ste <em>že izgubili</em> brez nje." data-en="The question isn't <em>whether</em> you need a website.<br/>It's how many customers you've <em>already lost</em> without one." data-de="Die Frage ist nicht, <em>ob</em> Sie eine Website brauchen.<br/>Sondern wie viele Kunden Sie ohne sie <em>schon verloren</em> haben.">Vprašanje ni, ali <em>potrebujete</em> spletno stran.<br/>Vprašanje je, koliko strank ste <em>že izgubili</em> brez nje.</p>
+        <span data-sl="Stranka vas bo iskala. Za samo 50 € na mesec poskrbimo, da vas najde — na vrhu Googla." data-en="A customer will look for you. For just €50 a month we make sure they find you — at the top of Google." data-de="Ein Kunde wird Sie suchen. Für nur 50 € im Monat sorgen wir dafür, dass man Sie findet — ganz oben bei Google.">Stranka vas bo iskala. Za samo 50 € na mesec poskrbimo, da vas najde — na vrhu Googla.</span>
+        <a href="#kontakt" class="btn btn--red magnetic story__cta" data-cursor="hover" data-sl="Želim, da me najdejo →" data-en="I want to be found →" data-de="Ich will gefunden werden →"><span>Želim, da me najdejo →</span></a>
       </div>
     </section>
 
-    <section id="contact" class="contact">
-      <div class="contact-box">
-        <h2><span class="gradient-text" data-i18n="contactTitle">Tvoja znamka. Bolj jasna. Bolj profesionalna.</span></h2>
-        <p data-i18n="contactText">Pošlji povpraševanje in ONIX ti pripravi spletno stran, vizualno podobo, marketing in AI rešitev, prilagojeno tvojemu podjetju.</p>
-        <div class="cta-row"><a class="btn primary" href="tel:+38670577333">Miha Pohar • 070 577 333</a><a class="btn secondary" href="tel:+38631544416">Aljaž Skornšek • 031 544 416</a></div>
+    <!-- STORITVE -->
+    <section class="services" id="storitve">
+      <div class="sec-head">
+        <p class="kicker reveal"><span>02</span> <span data-sl="Storitve" data-en="Services" data-de="Leistungen">Storitve</span></p>
+        <h2 class="sec-title reveal" data-sl="Vse za vašo<br/>digitalno rast." data-en="Everything for your<br/>digital growth." data-de="Alles für Ihr<br/>digitales Wachstum.">Vse za vašo<br/>digitalno rast.</h2>
+      </div>
+      <div class="cards">
+        <article class="card reveal" data-cursor="hover"><span class="card__no">01</span><h3 data-sl="Izdelava spletnih strani" data-en="Website development" data-de="Website-Erstellung">Izdelava spletnih strani</h3><p data-sl="Hitre, lepe in prodajno naravnane strani po meri. Take, ki obiskovalca spremenijo v stranko." data-en="Fast, beautiful, sales-driven custom sites. The kind that turn a visitor into a customer." data-de="Schnelle, schöne und verkaufsstarke Websites nach Maß — die aus Besuchern Kunden machen.">Hitre, lepe in prodajno naravnane strani po meri. Take, ki obiskovalca spremenijo v stranko.</p></article>
+        <article class="card reveal" data-cursor="hover"><span class="card__no">02</span><h3 data-sl="Spletni marketing" data-en="Online marketing" data-de="Online-Marketing">Spletni marketing</h3><p data-sl="Google Ads, družbena omrežja in kampanje, ki prinašajo merljive rezultate in nove stranke." data-en="Google Ads, social media and campaigns that deliver measurable results and new customers." data-de="Google Ads, Social Media und Kampagnen mit messbaren Ergebnissen und neuen Kunden.">Google Ads, družbena omrežja in kampanje, ki prinašajo merljive rezultate in nove stranke.</p></article>
+        <article class="card reveal" data-cursor="hover"><span class="card__no">03</span><h3 data-sl="Influencer marketing" data-en="Influencer marketing" data-de="Influencer-Marketing">Influencer marketing</h3><p data-sl="Sodelujemo z znanimi influencerji in vašo znamko ponesemo pred pravo, široko občinstvo." data-en="We work with well-known influencers and bring your brand in front of the right, wide audience." data-de="Wir arbeiten mit bekannten Influencern und bringen Ihre Marke vor das richtige, breite Publikum.">Sodelujemo z znanimi influencerji in vašo znamko ponesemo pred pravo, široko občinstvo.</p></article>
+        <article class="card reveal" data-cursor="hover"><span class="card__no">04</span><h3 data-sl="SEO &amp; optimizacija" data-en="SEO &amp; optimization" data-de="SEO &amp; Optimierung">SEO &amp; optimizacija</h3><p data-sl="Da vas Google pokaže prvega. Optimiziramo hitrost, vsebino in vidnost vaše strani." data-en="So Google shows you first. We optimize speed, content and visibility of your site." data-de="Damit Google Sie zuerst zeigt. Wir optimieren Tempo, Inhalt und Sichtbarkeit Ihrer Seite.">Da vas Google pokaže prvega. Optimiziramo hitrost, vsebino in vidnost vaše strani.</p></article>
+        <article class="card card--accent reveal" data-cursor="hover"><span class="card__no">05</span><h3 data-sl="AI Chatbot 🤖" data-en="AI Chatbot 🤖" data-de="AI-Chatbot 🤖">AI Chatbot 🤖</h3><p data-sl="Olajšajte si čas — naredimo personaliziran chatbot za vaše podjetje. Poln informacij, odgovarja strankam 24/7." data-en="Save time — we build a personalized chatbot for your business. Full of info, answers customers 24/7." data-de="Sparen Sie Zeit — wir bauen einen personalisierten Chatbot für Ihr Unternehmen. Voller Infos, antwortet rund um die Uhr.">Olajšajte si čas — naredimo personaliziran chatbot za vaše podjetje. Poln informacij, odgovarja strankam 24/7.</p><span class="card__try" data-open-chat data-sl="Preizkusi spodaj ↘" data-en="Try it below ↘" data-de="Unten testen ↘">Preizkusi spodaj ↘</span></article>
+      </div>
+    </section>
+
+    <!-- PROMO -->
+    <section class="promo">
+      <div class="promo__inner">
+        <div class="promo__text reveal">
+          <p class="kicker"><span>03</span> <span data-sl="Naša obljuba" data-en="Our promise" data-de="Unser Versprechen">Naša obljuba</span></p>
+          <h2 class="promo__title" data-sl="Garantiramo več prometa za vašo spletno prezenco." data-en="We guarantee more traffic for your web presence." data-de="Wir garantieren mehr Traffic für Ihre Web-Präsenz.">Garantiramo več prometa za vašo spletno prezenco.</h2>
+          <p class="promo__p" data-sl="Že <b>ena</b> dodatna stranka vam lahko povrne celotno investicijo. Mi olajšamo delo, optimiziramo in prinašamo rezultate." data-en="Just <b>one</b> extra customer can pay back your whole investment. We make it easy, optimize and deliver results." data-de="Schon <b>ein</b> zusätzlicher Kunde kann Ihre ganze Investition zurückholen. Wir machen es einfach, optimieren und liefern Ergebnisse.">Že <b>ena</b> dodatna stranka vam lahko povrne celotno investicijo. Mi olajšamo delo, optimiziramo in prinašamo rezultate.</p>
+          <ul class="promo__list">
+            <li data-sl="Že ena dodatna stranka vam lahko povrne denar." data-en="One extra customer can pay it all back." data-de="Ein zusätzlicher Kunde holt alles zurück.">Že ena dodatna stranka vam lahko povrne denar.</li>
+            <li data-sl="Olajšamo delo — optimiziramo in prinašamo rezultate." data-en="We make work easy — optimize and deliver." data-de="Wir vereinfachen — optimieren und liefern.">Olajšamo delo — optimiziramo in prinašamo rezultate.</li>
+            <li data-sl="Vse pod eno streho: stran, marketing in vsebina." data-en="All under one roof: site, marketing and content." data-de="Alles aus einer Hand: Seite, Marketing und Inhalt.">Vse pod eno streho: stran, marketing in vsebina.</li>
+          </ul>
+          <a href="#kontakt" class="btn btn--red magnetic" data-cursor="hover" data-sl="Začnimo rasti" data-en="Let's grow" data-de="Lass uns wachsen"><span>Začnimo rasti</span></a>
+        </div>
+        <figure class="promo__media reveal"><img src="assets/growth.jpg" alt="Rast prometa z ONIX" loading="lazy" /></figure>
+      </div>
+    </section>
+
+    <!-- KREACIJE -->
+    <section class="work" id="kreacije">
+      <div class="sec-head">
+        <p class="kicker reveal"><span>04</span> <span data-sl="Naše kreacije" data-en="Our work" data-de="Unsere Projekte">Naše kreacije</span></p>
+        <h2 class="sec-title reveal" data-sl="Strani, ki<br/>prinašajo rezultate." data-en="Sites that<br/>deliver results." data-de="Seiten, die<br/>Ergebnisse liefern.">Strani, ki<br/>prinašajo rezultate.</h2>
+      </div>
+      <div class="work__grid">
+        <a href="https://pobelime.si" target="_blank" rel="noopener" class="project reveal" data-cursor="view" style="--tone:#e9e4db;--ink:#15110d">
+          <div class="project__shot"><span class="project__win"><i></i><i></i><i></i></span><span class="project__logo">POBELI<em style="color:#d8434f">ME</em></span><span class="project__sub">Pleskarstvo · Maribor</span></div>
+          <div class="project__meta"><div><b>Pobeli Me</b><span data-sl="Spletna stran &amp; dizajn" data-en="Website &amp; design" data-de="Website &amp; Design">Spletna stran &amp; dizajn</span></div><span class="project__url">pobelime.si ↗</span></div>
+        </a>
+        <a href="https://zav-skornsek.si" target="_blank" rel="noopener" class="project reveal" data-cursor="view" style="--tone:#10243f;--ink:#eaf2ff">
+          <div class="project__shot"><span class="project__win"><i></i><i></i><i></i></span><span class="project__logo">ZAV<em style="color:#5fa8ff">SKORNŠEK</em></span><span class="project__sub">Zavarovalništvo</span></div>
+          <div class="project__meta"><div><b>Zav Skornšek</b><span data-sl="Spletna stran &amp; marketing" data-en="Website &amp; marketing" data-de="Website &amp; Marketing">Spletna stran &amp; marketing</span></div><span class="project__url">zav-skornsek.si ↗</span></div>
+        </a>
+        <a href="#kontakt" class="project reveal" data-cursor="view" style="--tone:#2a1418;--ink:#ffe7d6">
+          <div class="project__shot"><span class="project__win"><i></i><i></i><i></i></span><span class="project__logo">WEINGUT<em style="color:#e2884f">STEINER</em></span><span class="project__sub">Leibnitz · AT</span></div>
+          <div class="project__meta"><div><b>Weingut Steiner</b><span data-sl="Vinogradništvo · Lipnica (AT)" data-en="Winery · Leibnitz (AT)" data-de="Weingut · Leibnitz (AT)">Vinogradništvo · Lipnica (AT)</span></div><span class="project__url">weingut-steiner.at ↗</span></div>
+        </a>
+        <a href="#kontakt" class="project reveal" data-cursor="view" style="--tone:#14211c;--ink:#dffaef">
+          <div class="project__shot"><span class="project__win"><i></i><i></i><i></i></span><span class="project__logo">CAFÉ<em style="color:#54c89a">LIPICA</em></span><span class="project__sub">Leibnitz · AT</span></div>
+          <div class="project__meta"><div><b>Café Lipica</b><span data-sl="Gostinstvo · Lipnica (AT)" data-en="Hospitality · Leibnitz (AT)" data-de="Gastronomie · Leibnitz (AT)">Gostinstvo · Lipnica (AT)</span></div><span class="project__url">cafe-lipica.at ↗</span></div>
+        </a>
+      </div>
+    </section>
+
+    <!-- PROCES -->
+    <section class="process">
+      <div class="sec-head">
+        <p class="kicker reveal"><span>05</span> <span data-sl="Kako delamo" data-en="How we work" data-de="So arbeiten wir">Kako delamo</span></p>
+        <h2 class="sec-title reveal" data-sl="Strategija. Ustvarjalnost.<br/><em>Rezultati.</em>" data-en="Strategy. Creativity.<br/><em>Results.</em>" data-de="Strategie. Kreativität.<br/><em>Ergebnisse.</em>">Strategija. Ustvarjalnost.<br/><em>Rezultati.</em></h2>
+      </div>
+      <div class="steps">
+        <div class="step reveal" data-cursor="hover"><span class="step__no">01</span><h3 data-sl="Strategija" data-en="Strategy" data-de="Strategie">Strategija</h3><p data-sl="Pametne odločitve, podprte s podatki in jasnim ciljem." data-en="Smart decisions, backed by data and a clear goal." data-de="Kluge Entscheidungen, gestützt auf Daten und ein klares Ziel.">Pametne odločitve, podprte s podatki in jasnim ciljem.</p></div>
+        <div class="step reveal" data-cursor="hover"><span class="step__no">02</span><h3 data-sl="Ustvarjalnost" data-en="Creativity" data-de="Kreativität">Ustvarjalnost</h3><p data-sl="Sveže ideje in kreativne rešitve, ki izstopajo iz množice." data-en="Fresh ideas and creative solutions that stand out." data-de="Frische Ideen und kreative Lösungen, die herausstechen.">Sveže ideje in kreativne rešitve, ki izstopajo iz množice.</p></div>
+        <div class="step reveal" data-cursor="hover"><span class="step__no">03</span><h3 data-sl="Rezultati" data-en="Results" data-de="Ergebnisse">Rezultati</h3><p data-sl="Merljivi uspehi — več obiskov, povpraševanj in prodaje." data-en="Measurable wins — more visits, inquiries and sales." data-de="Messbare Erfolge — mehr Besuche, Anfragen und Verkäufe.">Merljivi uspehi — več obiskov, povpraševanj in prodaje.</p></div>
+      </div>
+    </section>
+
+    <!-- CENE -->
+    <section class="pricing" id="cene">
+      <div class="sec-head sec-head--center">
+        <p class="kicker reveal"><span>06</span> <span data-sl="Cene" data-en="Pricing" data-de="Preise">Cene</span></p>
+        <h2 class="sec-title reveal" data-sl="Ena cena. Brez<br/>skritih stroškov." data-en="One price. No<br/>hidden costs." data-de="Ein Preis. Keine<br/>versteckten Kosten.">Ena cena. Brez<br/>skritih stroškov.</h2>
+      </div>
+      <div class="plans">
+        <article class="plan reveal" data-cursor="hover">
+          <div class="plan__top"><span class="plan__name" data-sl="Enkraten nakup" data-en="One-time" data-de="Einmalig">Enkraten nakup</span><div class="plan__price"><b>500 €</b><span data-sl="enkratno" data-en="one-time" data-de="einmalig">enkratno</span></div></div>
+          <p class="plan__desc" data-sl="Spletna stran je v celoti vaša. Plačate enkrat in nimate mesečnih stroškov." data-en="The website is fully yours. Pay once, no monthly costs." data-de="Die Website gehört ganz Ihnen. Einmal zahlen, keine monatlichen Kosten.">Spletna stran je v celoti vaša. Plačate enkrat in nimate mesečnih stroškov.</p>
+          <ul class="plan__list">
+            <li data-sl="Profesionalna spletna stran po meri" data-en="Professional custom website" data-de="Professionelle Website nach Maß">Profesionalna spletna stran po meri</li>
+            <li data-sl="Optimizirana za telefon &amp; Google" data-en="Optimized for mobile &amp; Google" data-de="Optimiert für Mobil &amp; Google">Optimizirana za telefon &amp; Google</li>
+            <li data-sl="Postavitev v živo" data-en="Live launch" data-de="Live-Schaltung">Postavitev v živo</li>
+            <li data-sl="Stran v vaši lasti — za vedno" data-en="Site is yours — forever" data-de="Seite gehört Ihnen — für immer">Stran v vaši lasti — za vedno</li>
+          </ul>
+          <a href="#kontakt" class="btn btn--ghost btn--block magnetic" data-cursor="hover" data-sl="Izberi enkratno" data-en="Choose one-time" data-de="Einmalig wählen"><span>Izberi enkratno</span></a>
+        </article>
+        <article class="plan plan--featured reveal" data-cursor="hover">
+          <span class="plan__badge" data-sl="Najbolj priljubljeno" data-en="Most popular" data-de="Am beliebtesten">Najbolj priljubljeno</span>
+          <div class="plan__top"><span class="plan__name" data-sl="Mesečna naročnina" data-en="Monthly" data-de="Monatlich">Mesečna naročnina</span><div class="plan__price"><b>50 €</b><span data-sl="/ mesec" data-en="/ month" data-de="/ Monat">/ mesec</span></div></div>
+          <p class="plan__desc" data-sl="Vse vključeno, vedno posodobljeno in najden na Googlu. Prekličete lahko kadarkoli." data-en="All included, always updated and found on Google. Cancel anytime." data-de="Alles inklusive, immer aktuell und bei Google gefunden. Jederzeit kündbar.">Vse vključeno, vedno posodobljeno in najden na Googlu. Prekličete lahko kadarkoli.</p>
+          <ul class="plan__list">
+            <li data-sl="Profesionalna spletna stran po meri" data-en="Professional custom website" data-de="Professionelle Website nach Maß">Profesionalna spletna stran po meri</li>
+            <li data-sl="Gostovanje, vzdrževanje &amp; posodobitve" data-en="Hosting, maintenance &amp; updates" data-de="Hosting, Wartung &amp; Updates">Gostovanje, vzdrževanje &amp; posodobitve</li>
+            <li data-sl="SEO — da vas najdejo na Googlu" data-en="SEO — so you're found on Google" data-de="SEO — damit man Sie bei Google findet">SEO — da vas najdejo na Googlu</li>
+            <li data-sl="<b>Prekliči kadarkoli</b> — brez vezave" data-en="<b>Cancel anytime</b> — no contract" data-de="<b>Jederzeit kündbar</b> — ohne Bindung"><b>Prekliči kadarkoli</b> — brez vezave</li>
+          </ul>
+          <a href="#kontakt" class="btn btn--red btn--block magnetic" data-cursor="hover" data-sl="Izberi mesečno" data-en="Choose monthly" data-de="Monatlich wählen"><span>Izberi mesečno</span></a>
+        </article>
+      </div>
+      <p class="pricing__note reveal" data-sl="Niste prepričani, kaj je za vas? Na brezplačnem posvetu vam svetujemo iskreno." data-en="Not sure which fits? We'll advise you honestly in a free consultation." data-de="Unsicher, was passt? In einer Gratis-Beratung beraten wir Sie ehrlich.">Niste prepričani, kaj je za vas? Na brezplačnem posvetu vam svetujemo iskreno.</p>
+    </section>
+
+    <!-- MNENJA -->
+    <section class="quotes" id="mnenja">
+      <div class="sec-head">
+        <p class="kicker reveal"><span>07</span> <span data-sl="Mnenja strank" data-en="Client reviews" data-de="Kundenstimmen">Mnenja strank</span></p>
+        <h2 class="sec-title reveal" data-sl="Rezultati, ki<br/>govorijo zase." data-en="Results that<br/>speak for themselves." data-de="Ergebnisse, die<br/>für sich sprechen.">Rezultati, ki<br/>govorijo zase.</h2>
+      </div>
+      <div class="quotes__grid">
+        <blockquote class="quote reveal" data-cursor="hover"><span class="stars">★★★★★</span><p data-sl="“Po novi strani in kampanjah smo v treh mesecih podvojili število povpraševanj.”" data-en="“With the new site and campaigns we doubled our inquiries in three months.”" data-de="“Mit der neuen Seite und Kampagnen haben wir die Anfragen in drei Monaten verdoppelt.”">“Po novi strani in kampanjah smo v treh mesecih podvojili število povpraševanj.”</p><footer><b>Marko Z.</b><span data-sl="lastnik podjetja" data-en="business owner" data-de="Unternehmer">lastnik podjetja</span></footer></blockquote>
+        <blockquote class="quote reveal" data-cursor="hover"><span class="stars">★★★★★</span><p data-sl="“Končno stran, ki dejansko prodaja. Izgleda vrhunsko in deluje hitro.”" data-en="“Finally a site that actually sells. Looks premium and loads fast.”" data-de="“Endlich eine Seite, die wirklich verkauft. Sieht edel aus und ist schnell.”">“Končno stran, ki dejansko prodaja. Izgleda vrhunsko in deluje hitro.”</p><footer><b>Sara K.</b><span data-sl="kozmetični salon" data-en="beauty salon" data-de="Kosmetikstudio">kozmetični salon</span></footer></blockquote>
+        <blockquote class="quote reveal" data-cursor="hover"><span class="stars">★★★★★</span><p data-sl="“Sodelovanje z influencerji nam je čez noč prineslo ogromno novih strank.”" data-en="“The influencer collaboration brought us a flood of new customers overnight.”" data-de="“Die Influencer-Kooperation brachte uns über Nacht viele neue Kunden.”">“Sodelovanje z influencerji nam je čez noč prineslo ogromno novih strank.”</p><footer><b>Luka P.</b><span data-sl="blagovna znamka oblačil" data-en="clothing brand" data-de="Modemarke">blagovna znamka oblačil</span></footer></blockquote>
+        <blockquote class="quote reveal" data-cursor="hover"><span class="stars">★★★★★</span><p data-sl="“Ekipa ONIX razume posel, ne samo dizajn. Vsak evro se je povrnil večkratno.”" data-en="“The ONIX team gets business, not just design. Every euro paid back many times.”" data-de="“Das ONIX-Team versteht Business, nicht nur Design. Jeder Euro kam vielfach zurück.”">“Ekipa ONIX razume posel, ne samo dizajn. Vsak evro se je povrnil večkratno.”</p><footer><b>Nina V.</b><span data-sl="gostinstvo" data-en="hospitality" data-de="Gastronomie">gostinstvo</span></footer></blockquote>
+        <blockquote class="quote reveal" data-cursor="hover"><span class="stars">★★★★★</span><p data-sl="“Hitri, odzivni in iskreni. Povedo, kaj se splača in kaj ne.”" data-en="“Fast, responsive and honest. They tell you what's worth it and what isn't.”" data-de="“Schnell, reaktionsschnell und ehrlich. Sie sagen, was sich lohnt.”">“Hitri, odzivni in iskreni. Povedo, kaj se splača in kaj ne.”</p><footer><b>Žiga M.</b><span data-sl="obrtnik" data-en="craftsman" data-de="Handwerker">obrtnik</span></footer></blockquote>
+        <blockquote class="quote reveal" data-cursor="hover"><span class="stars">★★★★★</span><p data-sl="“Mesečna naročnina je popolna — stran je vedno posodobljena.”" data-en="“The monthly plan is perfect — the site is always up to date.”" data-de="“Das Monatsabo ist perfekt — die Seite ist immer aktuell.”">“Mesečna naročnina je popolna — stran je vedno posodobljena.”</p><footer><b>Tina R.</b><span data-sl="spletna trgovina" data-en="online shop" data-de="Online-Shop">spletna trgovina</span></footer></blockquote>
+      </div>
+    </section>
+
+    <!-- KONTAKT -->
+    <section class="contact" id="kontakt">
+      <div class="contact__glow" aria-hidden="true"></div>
+      <div class="contact__inner">
+        <div class="contact__intro reveal">
+          <p class="kicker"><span>08</span> <span data-sl="Kontakt" data-en="Contact" data-de="Kontakt">Kontakt</span></p>
+          <h2 class="contact__title" data-sl="Pripravljeni na<br/><em>rast</em>?" data-en="Ready to<br/><em>grow</em>?" data-de="Bereit zu<br/><em>wachsen</em>?">Pripravljeni na<br/><em>rast</em>?</h2>
+          <p class="contact__p" data-sl="Povejte nam o svojem projektu. V 24 urah se oglasimo z brezplačnim posvetom — brez obveznosti." data-en="Tell us about your project. We reply within 24 hours with a free consultation — no obligation." data-de="Erzählen Sie uns von Ihrem Projekt. Wir melden uns in 24 Stunden mit einer Gratis-Beratung — unverbindlich.">Povejte nam o svojem projektu. V 24 urah se oglasimo z brezplačnim posvetom — brez obveznosti.</p>
+          <ul class="contact__info">
+            <li><span data-sl="Telefon" data-en="Phone" data-de="Telefon">Telefon</span><a href="tel:+38640000000" data-cursor="hover">+386 40 000 000</a></li>
+            <li><span>E-pošta</span><a href="mailto:info@onix.si" data-cursor="hover">info@onix.si</a></li>
+            <li><span>Instagram</span><a href="#" data-cursor="hover">@onix.si</a></li>
+          </ul>
+        </div>
+        <form class="form" id="form" novalidate>
+          <div class="field"><input type="text" id="ime" required placeholder=" " data-cursor="hover" /><label for="ime" data-sl="Ime in priimek" data-en="Full name" data-de="Name">Ime in priimek</label></div>
+          <div class="field"><input type="email" id="email" required placeholder=" " data-cursor="hover" /><label for="email" data-sl="E-pošta" data-en="Email" data-de="E-Mail">E-pošta</label></div>
+          <div class="field"><input type="tel" id="tel" placeholder=" " data-cursor="hover" /><label for="tel" data-sl="Telefon" data-en="Phone" data-de="Telefon">Telefon</label></div>
+          <div class="field"><select id="tip" required data-cursor="hover"><option value="" disabled selected></option><option>Spletna stran</option><option>Spletni marketing</option><option>Influencer marketing</option><option>SEO</option><option>Drugo</option></select><label for="tip" data-sl="Kaj potrebujete?" data-en="What do you need?" data-de="Was brauchen Sie?">Kaj potrebujete?</label></div>
+          <div class="field field--full"><textarea id="sporocilo" rows="3" placeholder=" " data-cursor="hover"></textarea><label for="sporocilo" data-sl="Na kratko o projektu" data-en="Briefly about the project" data-de="Kurz zum Projekt">Na kratko o projektu</label></div>
+          <button type="submit" class="btn btn--red btn--block magnetic" data-cursor="hover" data-sl="Pošlji povpraševanje" data-en="Send inquiry" data-de="Anfrage senden"><span>Pošlji povpraševanje</span></button>
+          <p class="form__note" id="formNote" role="status"></p>
+        </form>
       </div>
     </section>
   </main>
 
-  <footer>
-    <span>© 2026 ONIX • Miha Pohar • Aljaž Skornšek</span>
-    <span data-i18n="footerText">070 577 333 • 031 544 416 • Spletne strani • AI chatbot • Marketing • Dizajn • Snemanje • Vzdrževanje</span>
+  <footer class="footer">
+    <div class="footer__top">
+      <div class="footer__brand"><span class="brand brand--lg">ONI<em>X</em></span><p data-sl="Digitalna rast. Pravi rezultati." data-en="Digital growth. Real results." data-de="Digitales Wachstum. Echte Ergebnisse.">Digitalna rast. Pravi rezultati.</p></div>
+      <nav class="footer__col"><h4 data-sl="Storitve" data-en="Services" data-de="Leistungen">Storitve</h4><a href="#storitve">Spletne strani</a><a href="#storitve" data-sl="Spletni marketing" data-en="Online marketing" data-de="Online-Marketing">Spletni marketing</a><a href="#storitve">Influencer marketing</a><a href="#storitve">SEO</a></nav>
+      <nav class="footer__col"><h4 data-sl="Povezave" data-en="Links" data-de="Links">Povezave</h4><a href="#kreacije" data-sl="Kreacije" data-en="Work" data-de="Projekte">Kreacije</a><a href="#cene" data-sl="Cene" data-en="Pricing" data-de="Preise">Cene</a><a href="#mnenja" data-sl="Mnenja" data-en="Reviews" data-de="Bewertungen">Mnenja</a><a href="#kontakt">Kontakt</a></nav>
+      <div class="footer__col"><h4>Kontakt</h4><a href="tel:+38640000000">+386 40 000 000</a><a href="mailto:info@onix.si">info@onix.si</a><a href="#">@onix.si</a></div>
+    </div>
+    <div class="footer__big">ONI<em>X</em></div>
+    <div class="footer__row"><p>© <span id="year"></span> ONIX</p><a href="#vrh" data-cursor="hover" data-sl="Nazaj na vrh ↑" data-en="Back to top ↑" data-de="Nach oben ↑">Nazaj na vrh ↑</a></div>
   </footer>
 
-  <script>
-    const translations = {
-      sl: {
-        navServices: "Storitve",
-        navChatbot: "Chatbot",
-        navImages: "Slike",
-        navContact: "Kontakt",
-        heroEyebrow: "ONIX Digital Studio",
-        heroTitle: "Digitalni nastop. Na višjem nivoju.",
-        heroText: "Spletne strani po meri, profesionalni AI chatbot, Google marketing, družbena omrežja, logotipi, snemanje in vzdrževanje — vse v eni premium digitalni izkušnji.",
-        heroCta: "Začni projekt",
-        heroCta2: "Poglej storitve ›",
-        heroCardTitle: "Minimalno. Hitro. Profesionalno.",
-        heroCardText: "ONIX združi dizajn, tehnologijo in marketing v spletno stran, ki izgleda kot resna znamka.",
-        servicesTitle: "Vse za podjetje, ki želi izgledati večje.",
-        servicesText: "Čista estetika, jasna ponudba in digitalna orodja, ki ustvarijo zaupanje že v prvih sekundah.",
-        service1Title: "Spletne strani po meri",
-        service1Text: "Moderne, hitre in prodajno usmerjene spletne strani, prilagojene tvoji dejavnosti, ciljem in strankam.",
-        service2Title: "Profesionalni AI chatbot",
-        service2Text: "Prvi res strokovno personaliziran chatbot za slovenska podjetja — prilagojen tvoji ponudbi, tonu, pogostim vprašanjem in prodajnemu procesu.",
-        service3Title: "Google in spletni marketing",
-        service3Text: "Google oglaševanje, optimizacija, kampanje in strategija, da te stranke najdejo takrat, ko te najbolj potrebujejo.",
-        service4Title: "Družbena omrežja",
-        service4Text: "Urejanje vsebin, objav in kampanj za Instagram, Facebook, TikTok, LinkedIn in ostala pomembna omrežja.",
-        service5Title: "Dizajn logotipov",
-        service5Text: "Profesionalna vizualna identiteta, ki podjetju doda prepoznavnost, prestiž in jasen prvi vtis.",
-        service6Title: "Snemanje in vzdrževanje",
-        service6Text: "Profesionalno snemanje vsebin, posodobitve strani, tehnično vzdrževanje in dolgoročna skrb za digitalni nastop.",
-        chatbotEyebrow: "AI prodajni asistent",
-        chatbotTitle: "Chatbot, ki ni generičen. Je narejen za tvoje podjetje.",
-        chatbotText: "ONIX chatbot razume tvoje storitve, govori v tvojem tonu in strankam odgovarja profesionalno. Namenjen je podjetjem, ki želijo hitrejše odgovore, več povpraševanj in boljšo uporabniško izkušnjo.",
-        bullet1: "Personaliziran na tvojo dejavnost, cenike in pogosta vprašanja.",
-        bullet2: "Deluje kot prodajni asistent, ne samo kot navaden klepet.",
-        bullet3: "Primeren za slovenski trg, lokalna podjetja in profesionalno komunikacijo.",
-        processTitle: "Od ideje do premium nastopa.",
-        processText: "Jasen proces, brez nepotrebnega kompliciranja.",
-        process1Title: "Analiza",
-        process1Text: "Pregled dejavnosti, ciljev, konkurence in strank, ki jih želiš doseči.",
-        process2Title: "Dizajn",
-        process2Text: "Priprava moderne vizualne podobe, strukture strani in jasne predstavitve ponudbe.",
-        process3Title: "Izdelava",
-        process3Text: "Razvoj spletne strani, vnos vsebin, jezikovni preklop in tehnična optimizacija.",
-        process4Title: "Rast",
-        process4Text: "Vzdrževanje, marketing, oglaševanje, chatbot in izboljšave skozi čas.",
-        imagesTitle: "Slike naj izgledajo premium, ne generično.",
-        imagesText: "Najboljše delujejo svetle minimalistične fotografije, temni close-up posnetki tehnologije, MacBook/iPhone detajli, realni posnetki snemanja in čisti poslovni ambienti.",
-        image1Title: "Minimalističen delovni prostor",
-        image1Text: "Za naslovnico uporabi čist prostor z računalnikom, svetlobo in premium ambientom.",
-        image2Title: "Strategija in marketing",
-        image2Text: "Za marketing in proces uporabi sliko sestanka, planiranja kampanj ali pregleda spletne analitike.",
-        image3Title: "Profesionalno snemanje",
-        image3Text: "Za video storitve uporabi kamero, luči, mikrofone ali realen kader snemanja za podjetje.",
-        contactTitle: "Tvoja znamka. Bolj jasna. Bolj profesionalna.",
-        contactText: "Pošlji povpraševanje in ONIX ti pripravi spletno stran, vizualno podobo, marketing in AI rešitev, prilagojeno tvojemu podjetju.",
-        contactCta: "Pošlji povpraševanje",
-        contactCta2: "Pokliči nas ›",
-        footerText: "Spletne strani • AI chatbot • Marketing • Dizajn • Snemanje • Vzdrževanje"
-      },
-      en: {
-        navServices: "Services",
-        navChatbot: "Chatbot",
-        navImages: "Images",
-        navContact: "Contact",
-        heroEyebrow: "ONIX Digital Studio",
-        heroTitle: "Digital presence. On a higher level.",
-        heroText: "Custom websites, a professional AI chatbot, Google marketing, social media, logos, filming and maintenance — all in one premium digital experience.",
-        heroCta: "Start a project",
-        heroCta2: "View services ›",
-        heroCardTitle: "Minimal. Fast. Professional.",
-        heroCardText: "ONIX combines design, technology and marketing into a website that looks like a serious brand.",
-        servicesTitle: "Everything for a business that wants to look bigger.",
-        servicesText: "Clean aesthetics, a clear offer and digital tools that build trust within seconds.",
-        service1Title: "Custom websites",
-        service1Text: "Modern, fast and sales-focused websites tailored to your business, goals and customers.",
-        service2Title: "Professional AI chatbot",
-        service2Text: "A truly personalized chatbot for Slovenian businesses — adapted to your offer, tone, FAQs and sales process.",
-        service3Title: "Google and online marketing",
-        service3Text: "Google advertising, optimization, campaigns and strategy so customers find you when they need you most.",
-        service4Title: "Social media",
-        service4Text: "Content, posts and campaigns for Instagram, Facebook, TikTok, LinkedIn and other important platforms.",
-        service5Title: "Logo design",
-        service5Text: "A professional visual identity that gives your business recognition, prestige and a clear first impression.",
-        service6Title: "Filming and maintenance",
-        service6Text: "Professional content filming, website updates, technical maintenance and long-term digital support.",
-        chatbotEyebrow: "AI sales assistant",
-        chatbotTitle: "A chatbot that is not generic. It is built for your company.",
-        chatbotText: "The ONIX chatbot understands your services, speaks in your tone and answers customers professionally. It is made for companies that want faster replies, more leads and a better user experience.",
-        bullet1: "Personalized for your industry, prices and frequently asked questions.",
-        bullet2: "Works as a sales assistant, not just a basic chat widget.",
-        bullet3: "Designed for the Slovenian market, local businesses and professional communication.",
-        processTitle: "From idea to premium presence.",
-        processText: "A clear process without unnecessary complications.",
-        process1Title: "Analysis",
-        process1Text: "We review your business, goals, competition and the customers you want to reach.",
-        process2Title: "Design",
-        process2Text: "We prepare a modern visual style, website structure and a clear presentation of your offer.",
-        process3Title: "Development",
-        process3Text: "Website development, content setup, language switching and technical optimization.",
-        process4Title: "Growth",
-        process4Text: "Maintenance, marketing, advertising, chatbot and continuous improvements over time.",
-        imagesTitle: "Images should look premium, not generic.",
-        imagesText: "Light minimalist photos, dark close-ups of technology, MacBook/iPhone details, real filming shots and clean business environments work best.",
-        image1Title: "Minimalist workspace",
-        image1Text: "For the hero section, use a clean workspace with a computer, light and a premium atmosphere.",
-        image2Title: "Strategy and marketing",
-        image2Text: "For marketing and process sections, use a meeting, campaign planning or analytics review image.",
-        image3Title: "Professional filming",
-        image3Text: "For video services, use cameras, lights, microphones or real filming shots for a business.",
-        contactTitle: "Your brand. Clearer. More professional.",
-        contactText: "Send an inquiry and ONIX will prepare a website, visual identity, marketing and AI solution tailored to your company.",
-        contactCta: "Send inquiry",
-        contactCta2: "Call us ›",
-        footerText: "Websites • AI chatbot • Marketing • Design • Filming • Maintenance"
-      },
-      de: {
-        navServices: "Leistungen",
-        navChatbot: "Chatbot",
-        navImages: "Bilder",
-        navContact: "Kontakt",
-        heroEyebrow: "ONIX Digital Studio",
-        heroTitle: "Digitaler Auftritt. Auf höherem Niveau.",
-        heroText: "Webseiten nach Maß, professioneller KI-Chatbot, Google-Marketing, Social Media, Logos, Videoproduktion und Wartung — alles in einem Premium-Digitalerlebnis.",
-        heroCta: "Projekt starten",
-        heroCta2: "Leistungen ansehen ›",
-        heroCardTitle: "Minimal. Schnell. Professionell.",
-        heroCardText: "ONIX verbindet Design, Technologie und Marketing zu einer Webseite, die wie eine starke Marke wirkt.",
-        servicesTitle: "Alles für ein Unternehmen, das größer wirken will.",
-        servicesText: "Klare Ästhetik, ein verständliches Angebot und digitale Werkzeuge, die in Sekunden Vertrauen schaffen.",
-        service1Title: "Webseiten nach Maß",
-        service1Text: "Moderne, schnelle und verkaufsorientierte Webseiten, angepasst an dein Unternehmen, deine Ziele und deine Kunden.",
-        service2Title: "Professioneller KI-Chatbot",
-        service2Text: "Ein wirklich personalisierter Chatbot für slowenische Unternehmen — angepasst an dein Angebot, deinen Ton, häufige Fragen und deinen Verkaufsprozess.",
-        service3Title: "Google und Online-Marketing",
-        service3Text: "Google-Werbung, Optimierung, Kampagnen und Strategie, damit Kunden dich genau dann finden, wenn sie dich brauchen.",
-        service4Title: "Soziale Netzwerke",
-        service4Text: "Inhalte, Beiträge und Kampagnen für Instagram, Facebook, TikTok, LinkedIn und weitere wichtige Plattformen.",
-        service5Title: "Logo-Design",
-        service5Text: "Eine professionelle visuelle Identität, die deinem Unternehmen Wiedererkennung, Prestige und einen klaren ersten Eindruck gibt.",
-        service6Title: "Videoproduktion und Wartung",
-        service6Text: "Professionelle Videoinhalte, Webseiten-Updates, technische Wartung und langfristige digitale Betreuung.",
-        chatbotEyebrow: "KI-Verkaufsassistent",
-        chatbotTitle: "Ein Chatbot, der nicht generisch ist. Er wird für dein Unternehmen gebaut.",
-        chatbotText: "Der ONIX Chatbot versteht deine Leistungen, spricht in deinem Ton und antwortet Kunden professionell. Er ist für Unternehmen gemacht, die schnellere Antworten, mehr Anfragen und eine bessere Nutzererfahrung wollen.",
-        bullet1: "Personalisiert für deine Branche, Preise und häufige Fragen.",
-        bullet2: "Funktioniert als Verkaufsassistent, nicht nur als einfacher Chat.",
-        bullet3: "Geeignet für den slowenischen Markt, lokale Unternehmen und professionelle Kommunikation.",
-        processTitle: "Von der Idee zum Premium-Auftritt.",
-        processText: "Ein klarer Prozess ohne unnötige Komplikationen.",
-        process1Title: "Analyse",
-        process1Text: "Überblick über Unternehmen, Ziele, Konkurrenz und Kunden, die du erreichen möchtest.",
-        process2Title: "Design",
-        process2Text: "Entwicklung eines modernen visuellen Stils, Seitenaufbaus und klarer Angebotspräsentation.",
-        process3Title: "Umsetzung",
-        process3Text: "Entwicklung der Webseite, Inhalte, Sprachwechsel und technische Optimierung.",
-        process4Title: "Wachstum",
-        process4Text: "Wartung, Marketing, Werbung, Chatbot und laufende Verbesserungen.",
-        imagesTitle: "Bilder sollen hochwertig wirken, nicht generisch.",
-        imagesText: "Helle minimalistische Fotos, dunkle Technologie-Close-ups, MacBook/iPhone-Details, echte Videoaufnahmen und klare Business-Umgebungen funktionieren am besten.",
-        image1Title: "Minimalistischer Arbeitsplatz",
-        image1Text: "Für den Startbereich eignet sich ein sauberer Arbeitsplatz mit Computer, Licht und Premium-Atmosphäre.",
-        image2Title: "Strategie und Marketing",
-        image2Text: "Für Marketing und Prozess nutze ein Bild von Meeting, Kampagnenplanung oder Analyse.",
-        image3Title: "Professionelle Videoproduktion",
-        image3Text: "Für Videoleistungen nutze Kamera, Licht, Mikrofone oder echte Business-Aufnahmen.",
-        contactTitle: "Deine Marke. Klarer. Professioneller.",
-        contactText: "Sende eine Anfrage und ONIX erstellt dir Webseite, visuelle Identität, Marketing und KI-Lösung passend zu deinem Unternehmen.",
-        contactCta: "Anfrage senden",
-        contactCta2: "Anrufen ›",
-        footerText: "Webseiten • KI-Chatbot • Marketing • Design • Video • Wartung"
-      }
-    };
+  <!-- POP-UP -->
+  <div class="pop" id="pop" aria-hidden="true">
+    <div class="pop__box" role="dialog" aria-label="Ponudba">
+      <button class="pop__close" id="popClose" aria-label="Zapri">✕</button>
+      <span class="pop__tag" data-sl="🔥 Samo zdaj" data-en="🔥 Now only" data-de="🔥 Nur jetzt">🔥 Samo zdaj</span>
+      <h3 class="pop__title" data-sl="Brezplačen posvet <em>+ 20&nbsp;%</em> popust na prvi projekt." data-en="Free consultation <em>+ 20%</em> off your first project." data-de="Gratis Beratung <em>+ 20%</em> Rabatt auf das erste Projekt.">Brezplačen posvet <em>+ 20&nbsp;%</em> popust na prvi projekt.</h3>
+      <p class="pop__p" data-sl="Ponudba velja samo še danes. Rezervirajte svoj termin, dokler je na voljo." data-en="Offer valid today only. Book your slot while it lasts." data-de="Angebot nur heute gültig. Sichern Sie sich Ihren Termin.">Ponudba velja samo še danes. Rezervirajte svoj termin, dokler je na voljo.</p>
+      <a href="#kontakt" class="btn btn--red btn--block magnetic" id="popCta" data-cursor="hover" data-sl="Izkoristi ponudbo" data-en="Claim the offer" data-de="Angebot sichern"><span>Izkoristi ponudbo</span></a>
+      <p class="pop__small" data-sl="Brez obveznosti · odgovor v 24 urah" data-en="No obligation · reply within 24 h" data-de="Unverbindlich · Antwort in 24 h">Brez obveznosti · odgovor v 24 urah</p>
+    </div>
+  </div>
 
-    function setLanguage(lang) {
-      document.documentElement.lang = lang;
+  <!-- CHATBOT -->
+  <div class="chat" id="chat">
+    <div class="chat__nudge" id="chatNudge">
+      <p data-sl="Olajšajte si čas — tak chatbot naredimo za <b>vaše</b> podjetje. Preizkusite ga! 👇" data-en="Save time — we build a chatbot like this for <b>your</b> business. Try it! 👇" data-de="Sparen Sie Zeit — so einen Chatbot bauen wir für <b>Ihr</b> Unternehmen. Testen Sie ihn! 👇">Olajšajte si čas — tak chatbot naredimo za <b>vaše</b> podjetje. Preizkusite ga! 👇</p>
+      <svg class="chat__arrow" viewBox="0 0 60 80" aria-hidden="true"><path d="M30 4 C 12 26, 50 44, 30 72" fill="none" stroke="var(--red)" stroke-width="3" stroke-linecap="round"/><path d="M20 60 L30 74 L40 60" fill="none" stroke="var(--red)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+    <button class="chat__fab" id="chatFab" aria-label="Odpri klepet" data-cursor="hover">
+      <svg class="chat__fab-ico" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 3C6.5 3 2 6.8 2 11.5c0 2.1.9 4 2.4 5.5L3 21l4.3-1.3c1.4.5 3 .8 4.7.8 5.5 0 10-3.8 10-8.5S17.5 3 12 3Z"/><circle cx="8.5" cy="11.5" r="1.2" fill="var(--bg)"/><circle cx="12" cy="11.5" r="1.2" fill="var(--bg)"/><circle cx="15.5" cy="11.5" r="1.2" fill="var(--bg)"/></svg>
+      <span class="chat__fab-dot"></span>
+    </button>
+    <div class="chat__panel" id="chatPanel" role="dialog" aria-label="ONIX asistent">
+      <header class="chat__head">
+        <span class="chat__avatar">ON</span>
+        <div class="chat__title"><b>ONIX Asistent</b><i data-sl="Na voljo · odgovori takoj" data-en="Online · replies instantly" data-de="Online · antwortet sofort">Na voljo · odgovori takoj</i></div>
+        <button class="chat__x" id="chatX" aria-label="Zapri">✕</button>
+      </header>
+      <div class="chat__body" id="chatBody"></div>
+      <div class="chat__chips" id="chatChips"></div>
+      <form class="chat__form" id="chatForm">
+        <input id="chatText" autocomplete="off" data-sl-ph="Vprašajte karkoli…" data-en-ph="Ask anything…" data-de-ph="Fragen Sie alles…" placeholder="Vprašajte karkoli…" />
+        <button type="submit" aria-label="Pošlji">➤</button>
+      </form>
+    </div>
+  </div>
 
-      document.querySelectorAll('[data-i18n]').forEach((element) => {
-        const key = element.getAttribute('data-i18n');
-        if (translations[lang] && translations[lang][key]) {
-          element.textContent = translations[lang][key];
-        }
-      });
-
-      document.querySelectorAll('.lang-btn').forEach((button) => button.classList.remove('active'));
-      const labels = { sl: 'SLO', en: 'ENG', de: 'DE' };
-      document.querySelectorAll('.lang-btn').forEach((button) => {
-        if (button.textContent.trim() === labels[lang]) button.classList.add('active');
-      });
-    }
-  </script>
+  <button class="totop" id="totop" aria-label="Nazaj na vrh" data-cursor="hover">↑</button>
+  <script src="script.js"></script>
 </body>
 </html>

@@ -1,0 +1,9 @@
+{
+  "name": "onix-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "ONIX — spletna stran in AI chatbot",
+  "dependencies": {
+    "@anthropic-ai/sdk": "latest"
+  }
+}
